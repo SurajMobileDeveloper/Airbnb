@@ -11,7 +11,7 @@ protocol ViewServiceDelegate {
     func getGetHotelList(url: String, completion: @escaping(Result<[HotelList], DemoError>) -> Void) async
 }
 
-class HotelViewService: ViewServiceDelegate {
+class ExploreViewService: ViewServiceDelegate {
     func getGetHotelList(url: String, completion: @escaping(Result<[HotelList], DemoError>) -> Void) async {
         await NetworkManager().fetchData(urls: url, completion: completion)
     }
