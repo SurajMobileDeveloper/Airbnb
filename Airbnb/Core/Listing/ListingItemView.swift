@@ -25,8 +25,9 @@ struct ListingItemView: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(hotel.name ?? "Hotel")
-                        .font(.system(size: 18, weight: .semibold))
-                    
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundStyle(.black)
+                 
                     Text("Added 11 weeks ago")
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundStyle(.gray)
@@ -39,12 +40,15 @@ struct ListingItemView: View {
                         Text("\(hotel.priceCurrency ?? "")\(hotel.price ?? 0)  total before taxes")
                             .font(.system(size: 20, weight: .bold))
                             .underline()
+                            .foregroundStyle(.black)
                     }
                 }
                 Spacer()
                 HStack(spacing: 2) {
                     Image(systemName: "star.fill")
+                        .foregroundStyle(.black)
                     Text("4.86")
+                        .foregroundStyle(.black)
                 }
             } .font(.footnote)
         } .padding()

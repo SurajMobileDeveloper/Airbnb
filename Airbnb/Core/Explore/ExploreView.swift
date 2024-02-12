@@ -17,9 +17,12 @@ struct ExploreView: View {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 32) {
                         ForEach(viewModel.hotels, id: \.id) { hotel in
-                            ListingItemView(hotel: hotel)
-                                .frame(height: 440)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                            NavigationLink(destination: DetailExploreView(hotel: hotel)) {
+                                ListingItemView(hotel: hotel)
+                                    .frame(height: 440)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                            }
+                            
                         }
                     }
                     .padding(.horizontal, 0)
