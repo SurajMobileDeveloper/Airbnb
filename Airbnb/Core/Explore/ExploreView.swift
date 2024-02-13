@@ -8,27 +8,38 @@
 import SwiftUI
 
 struct ExploreView: View {
+    @State private var showDestinationSearchView = false
     @StateObject private var viewModel = HotelListViewModel()
     
     var body: some View {
         NavigationView {
-            VStack {
-                SearchAndFilterBar()
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 32) {
-                        ForEach(viewModel.hotels, id: \.id) { hotel in
-                            NavigationLink(destination: DetailExploreView(hotel: hotel)) {
+            if showDestinationSearchView {
+                DestinationSearchView(show: $showDestinationSearchView)
+            } else {
+                VStack {
+                    SearchAndFilterBar()
+                        .onTapGesture {
+                            withAnimation(.linear) {
+                                showDestinationSearchView.toggle()
+                            }
+                        }
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 32) {
+                            ForEach(viewModel.hotels, id: \.id) { hotel in
+                                //                            NavigationLink(destination: DetailExploreView(hotel: hotel)) {
                                 ListingItemView(hotel: hotel)
                                     .frame(height: 440)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
+                                //                            }
+                                
                             }
-                            
                         }
+                        .padding(.horizontal, 0)
                     }
-                    .padding(.horizontal, 0)
+                    .navigationBarHidden(true)
                 }
-                .navigationBarHidden(true)
             }
+           
         }
         .onAppear {
             Task {

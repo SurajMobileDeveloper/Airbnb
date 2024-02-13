@@ -7,9 +7,14 @@
 
 import SwiftUI
 
-
+#//MARK: Needs to code optimize
 struct DetailExploreView: View {
     let hotel: HotelList
+    
+    init(hotel: HotelList) {
+        self.hotel = hotel
+    }
+    
     var body: some View {
         ScrollView {
             TabView {
